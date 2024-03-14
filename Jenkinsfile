@@ -22,6 +22,7 @@ node {
                         
                         // Verify Docker installation
                         sh 'docker --version'
+                        sh 'sudo chmod 666 /var/run/docker.sock'
                     }
                 }        
     }
