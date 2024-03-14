@@ -2,8 +2,7 @@ node {
     def app
 
     stage('Check Docker Installation') {
-            steps {
-                script {
+        script {
                     // Check if Docker is installed
                     def dockerVersion = sh(script: 'docker --version', returnStdout: true).trim()
                     
@@ -24,9 +23,8 @@ node {
                         // Verify Docker installation
                         sh 'docker --version'
                     }
-                }
-            }
-        }
+                }        
+    }
     
     stage('Clone repository') {
       
