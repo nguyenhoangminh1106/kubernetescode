@@ -1,29 +1,6 @@
 node {
     def app
 
-    stage('Check Docker Installation') {
-                    // Check if Docker is installed
-                    def dockerVersion = sh(script: 'docker --version', returnStdout: true, returnStatus: true)
-                                    
-                                    if (dockerVersion == 0) {
-                                        echo "Docker is already installed"
-                                    } else {
-                                        echo "Docker is not installed. Installing Docker..."
-                                        // Install Docker
-                                        sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
-                                        sh 'sh get-docker.sh'
-                                        
-                                        // Add the Jenkins user to the Docker group
-                                        sh 'sudo usermod -aG docker jenkins'
-                                        
-                                        // Restart Docker
-                                        sh 'sudo systemctl restart docker'
-                                        
-                                        // Verify Docker installation
-                                        sh 'docker --version'
-                                    }     
-    }
-    
     stage('Clone repository') {
       
 
