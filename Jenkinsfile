@@ -5,7 +5,7 @@ node {
         def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
         sh 'whoami'
-        sh 'sudo chmod 666 /var/run/docker.sock'
+        
     }
     
     stage('Clone repository') {
