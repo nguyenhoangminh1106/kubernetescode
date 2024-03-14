@@ -11,10 +11,3 @@ COPY . .
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
 
-FROM jenkins/jenkins:latest
-
-# Install Docker inside the Jenkins container
-USER root
-RUN apt-get update && apt-get install -y docker.io
-USER jenkins
-
