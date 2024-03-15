@@ -4,7 +4,7 @@ node {
     stage('Initialize'){
         def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
-        sh 'usermod -aG docker $USER'
+        //sh 'usermod -aG docker $USER'
         
     }
     
@@ -15,7 +15,7 @@ node {
     }
 
     stage('Build image') {
-  
+       sh 'ls /var/run/'
        app = docker.build("nguyenhoangminh1106/test")
     }
 
