@@ -12,7 +12,6 @@ node {
     }
 
     stage('Build image') {
-        sh 'systemctl status docker'
         sh 'ls /var/run'
        app = docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
     }
