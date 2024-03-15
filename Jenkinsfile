@@ -12,7 +12,7 @@ node {
     }
 
     stage('Build image') {
-       sh 'chmod 666 /var/run/docker.sock'
+       sh 'systemctl docker start'
        app = docker.build("nguyenhoangminh1106/test")
     }
 
