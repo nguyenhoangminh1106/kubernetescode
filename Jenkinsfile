@@ -25,7 +25,7 @@ node {
 
     stage('Push image') {
         
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+        docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
             app.push("${env.BUILD_NUMBER}")
         }
     }
