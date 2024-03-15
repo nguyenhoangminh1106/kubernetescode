@@ -16,7 +16,7 @@ node {
     }
 
     stage('Push image') {
-        sh 'echo "103.160.90.59 registry-uat.fke.fptcloud.com" >> /etc/hosts'
+        sh "echo 103.160.90.59 registry-uat.fke.fptcloud.com >> /etc/hosts"
         docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
             app.push("${env.BUILD_NUMBER}")
         }
