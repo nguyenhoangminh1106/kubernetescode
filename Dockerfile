@@ -13,12 +13,13 @@ CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
 
 RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-# # Now we need to allow jenkins to run docker commands! (This is not elegant, but at least it's semi-portable...)
-# USER root
+FROM jenkins/jenkins:lts-jdk11
 
-# # Create our alias file that allows us to use docker as sudo without writing sudo
-# RUN chmod 666 /var/run/docker.sock
+USER root
 
-# # switch back to the jenkins-user
-# USER jenkins
+RUN apt-get update \
+    && apt-get install -y sudo \
+    && echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+USER jenkins
 
