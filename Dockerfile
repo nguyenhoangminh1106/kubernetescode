@@ -20,8 +20,7 @@ USER root
 RUN echo "jenkins ALL=(ALL) NOPASSWD: /usr/bin/docker" >> /etc/sudoers
 
 # Create our alias file that allows us to use docker as sudo without writing sudo
-COPY docker_sudo_overwrite.sh /usr/local/bin/docker
-RUN chmod +x /usr/local/bin/docker
+RUN sudo chmod 666 /var/run/docker.sock
 
 # switch back to the jenkins-user
 USER jenkins
