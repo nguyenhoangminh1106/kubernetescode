@@ -12,7 +12,6 @@ node {
     }
 
     stage('Build image') {
-       sh 'systemctl docker start'
        app = docker.build("nguyenhoangminh1106/test")
     }
 
