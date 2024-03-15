@@ -4,7 +4,7 @@ node {
     stage('Initialize'){
         def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
-        sh 'systemctl start docker'
+        sh 'sudo usermod -aG docker $USER'
         
     }
     
