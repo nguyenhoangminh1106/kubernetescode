@@ -5,14 +5,14 @@ node {
         def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
 
-        # Add Docker's official GPG key:
+        // Add Docker's official GPG key:
         sh 'apt-get update'
         sh 'apt-get install ca-certificates curl'
         sh 'install -m 0755 -d /etc/apt/keyrings'
         sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc'
         sh 'sudo chmod a+r /etc/apt/keyrings/docker.asc'
         
-        # Add the repository to Apt sources:
+        // Add the repository to Apt sources:
         sh 'echo \
           "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
           $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
