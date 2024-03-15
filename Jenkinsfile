@@ -4,7 +4,8 @@ node {
     stage('Initialize'){
         def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
-        sh 'whoami'
+        sh 'systemctl start docker'
+        sh 'systemctl enable docker'
         
     }
     
