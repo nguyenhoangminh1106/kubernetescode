@@ -11,7 +11,7 @@ COPY . .
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
 
-# RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # # Now we need to allow jenkins to run docker commands! (This is not elegant, but at least it's semi-portable...)
 # USER root
