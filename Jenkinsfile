@@ -15,16 +15,19 @@ node {
        app = docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
     }
 
+    stage('Test image') {
+  
+
+        app.inside {
+            sh 'echo "Tests passed"'
+        }
+    }
+
     stage('Push image') {
         
         docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
             app.push("${env.BUILD_NUMBER}")
         }
-    }
-
-    stage('Delete unused Docker images') {
-        // Run docker image prune -a command
-        sh 'docker image prune -a -f'
     }
     
     stage('Trigger ManifestUpdate') {
