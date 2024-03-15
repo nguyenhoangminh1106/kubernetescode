@@ -4,18 +4,15 @@ node {
     stage('Initialize'){
         def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
-        //sh 'usermod -aG docker $USER'
         
     }
     
     stage('Clone repository') {
-      
-
         checkout scm
     }
 
     stage('Build image') {
-       sh 'ls /var/run/'
+       sh 'chmod 666 /var/run/docker.sock'
        app = docker.build("nguyenhoangminh1106/test")
     }
 
