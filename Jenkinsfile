@@ -4,7 +4,6 @@ node {
     stage('Initialize'){
         def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
-        sh 'sudo chmod 666 /var/run/docker.sock'
         
     }
     
