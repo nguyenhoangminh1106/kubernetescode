@@ -11,15 +11,4 @@ COPY . .
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
 
-RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-FROM jenkins/jenkins:lts-jdk11
-
-USER root
-
-RUN apt-get update \
-    && apt-get install -y sudo \
-    && echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-USER jenkins
 
