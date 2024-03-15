@@ -13,7 +13,6 @@ node {
 
     stage('Build image') {
        sh 'ls /var/run/'
-       sh 'chmod 666 /var/run/docker.sock'
        app = docker.build("nguyenhoangminh1106/test")
     }
 
