@@ -14,17 +14,10 @@ pipeline {
         }
     }
 
-    stage('Build') {
-      steps {
-          sh "mvn clean install"
-      }
-    }
-
     stage('Build image') {
       steps {
         container('docker') {  
-          sh "docker build -t 576bb055-bc8d-4b31-a36a-a454eaeb2921/test:latest ." 
-          
+          sh "docker build -t 576bb055-bc8d-4b31-a36a-a454eaeb2921/test:latest ."           
         }
       }
     }
