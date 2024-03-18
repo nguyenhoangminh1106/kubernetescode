@@ -1,29 +1,5 @@
 pipeline {
-  agent {
-    kubernetes {
-      yaml '''
-          apiVersion: v1
-          kind: Pod
-          spec:
-            containers:  
-              - name: jnlp
-                image: jenkins/inbound-agent:latest
-                imagePullPolicy: Always
-              - name: docker
-                image: docker:latest
-                volumeMounts:
-                  - name: docker
-                    command: ["tail", "-f", "/dev/null"]
-                    imagePullPolicy: Always
-                    mountPath: /var/run/docker.sock # We use the k8s host docker engine
-            volumes:
-              - name: docker
-                hostPath:
-                  path: /var/run/docker.sock
-        '''
-      
-    }
-  }
+  agent any
 
   stages {
     stage('Clone repository') {
