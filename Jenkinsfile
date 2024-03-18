@@ -9,20 +9,15 @@ pipeline {
               jenkins: jenkins-agent
           spec:
             containers:  
-               - name: jnlp
-                 image: jenkins/inbound-agent:latest
-                 volumeMounts:
-                   - name: docker
-                     mountPath: /var/run/docker.sock # We use the k8s host docker engine
-                   - name: docker_pv
-                     mountPath: /var/run/docker.sock
-             volumes:
-               - name: docker
-                 hostPath:
-                   path: /var/run/docker.sock
-               - name: docker_pv
-                 persistentVolumeClaim:
-                   claimName: jenkins-pv-volume
+              - name: jnlp
+                image: jenkins/inbound-agent:latest
+                volumeMounts:
+                  - name: docker
+                    mountPath: /var/run/docker.sock # We use the k8s host docker engine
+            volumes:
+              - name: docker
+                hostPath:
+                  path: /var/run/docker.sock
         '''
       
     }
