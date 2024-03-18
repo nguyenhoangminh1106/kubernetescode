@@ -6,15 +6,17 @@ pipeline {
     }
   }
 
-  stage('Initialize'){
-        def dockerHome = tool 'Docker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-  }
-
   stages {
     stage('Clone repository') {
         steps {
           checkout scm
+        }
+    }
+
+    stage('Initialize'){
+        steps {
+          def dockerHome = tool 'Docker'
+          env.PATH = "${dockerHome}/bin:${env.PATH}"
         }
     }
 
