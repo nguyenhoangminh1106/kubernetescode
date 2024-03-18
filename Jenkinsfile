@@ -49,7 +49,7 @@ pipeline {
           script {
             def dockerHome = tool 'Docker'
             env.PATH = "${dockerHome}/bin:${env.PATH}"
-            sh 'cat /etc/hosts'
+            sh 'echo "103.160.90.59 registry-uat.fke.fptcloud.com" >> /etc/hosts'
           }
         }
     }
