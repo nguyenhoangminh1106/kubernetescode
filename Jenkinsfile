@@ -9,12 +9,6 @@ pipeline {
   }
 
   stages {
-    // stage('Initialize'){
-    //     def dockerHome = tool 'Docker'
-    //     env.PATH = "${dockerHome}/bin:${env.PATH}"
-        
-    // }
-    
     stage('Clone repository') {
         steps {
           checkout scm
@@ -28,37 +22,24 @@ pipeline {
     }
 
     stage('Build image') {
-      // app = docker.build("nguyenhoangminh1106/test")
       steps {
-          app = docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
+        container('docker') {  
+          sh "docker build -t 576bb055-bc8d-4b31-a36a-a454eaeb2921/test:latest ." 
+          
+        }
       }
     }
 
     stage('Push image') {
-      
-
       steps {
-        docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
-          // app.push("${env.BUILD_NUMBER}")
-          app.push("latest")
-        }
+        sh "docker push 576bb055-bc8d-4b31-a36a-a454eaeb2921/test:latest"
       }
-
-        // docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-        //     app.push("${env.BUILD_NUMBER}")
-        // }
     }
 
     stage('Delete unused Docker images') {
-        // Run docker image prune -a command
       steps {
-          sh 'docker image prune -a -f'
+        sh 'docker image prune -a -f'
       }
     }
-    
-    // stage('Trigger ManifestUpdate') {
-    //     echo "triggering updatemanifestjob"
-    //     build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-    // }
   }
 }
