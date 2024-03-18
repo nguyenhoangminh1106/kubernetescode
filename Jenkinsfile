@@ -6,8 +6,8 @@ pipeline {
           kind: Pod
           spec:
             containers:  
-              - name: maven
-                image: maven:alpine
+              - name: docker
+                image: docker:alpine
                 volumeMounts:
                   - name: docker
                     mountPath: /var/run/docker.sock # We use the k8s host docker engine
