@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    kubernates {
+    kubernetes {
       yaml '''
           apiVersion: v1
           kind: Pod
@@ -9,7 +9,7 @@ pipeline {
           spec:
             containers:
             - name: jenkins-slave
-              image: your_jenkins_slave_image:tag
+              image: docker:latest
               command:
               - "cat"
               tty: true
