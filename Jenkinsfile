@@ -16,23 +16,33 @@ pipeline {
     // }
     
     stage('Clone repository') {
-        checkout scm
+        steps {
+          checkout scm
+        }
     }
 
     stage('Build') {
-      sh "mvn clean install"   
+      steps {
+          sh "mvn clean install"
+      }
     }
 
     stage('Build image') {
-       app = docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
-        // app = docker.build("nguyenhoangminh1106/test")
+      // app = docker.build("nguyenhoangminh1106/test")
+      steps {
+          app = docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
+      }
     }
 
     stage('Push image') {
+      
+
+      steps {
         docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
-            // app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+          // app.push("${env.BUILD_NUMBER}")
+          app.push("latest")
         }
+      }
 
         // docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
         //     app.push("${env.BUILD_NUMBER}")
@@ -41,7 +51,9 @@ pipeline {
 
     stage('Delete unused Docker images') {
         // Run docker image prune -a command
-        sh 'docker image prune -a -f'
+      steps {
+          sh 'docker image prune -a -f'
+      }
     }
     
     // stage('Trigger ManifestUpdate') {
