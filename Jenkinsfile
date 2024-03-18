@@ -32,20 +32,24 @@ pipeline {
 
     stage('Build image') {
       steps {
-        docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
+        script{
+          docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
+        }
       }
     }
 
     stage('Push image') {
       steps {
-        docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry').push("latest")
+        script {
+          docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry').push("latest")
+        }
       }
     }
 
-    // stage('Delete unused Docker images') {
-    //   steps {
-    //     sh 'docker image prune -a -f'
-    //   }
-    // }
+    stage('Delete unused Docker images') {
+      steps {
+         sh 'docker image prune -a -f'
+      }
+    }
   }
 }
