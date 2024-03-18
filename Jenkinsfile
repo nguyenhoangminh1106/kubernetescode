@@ -20,8 +20,6 @@ pipeline {
                 mountPath: /usr/bin/docker
               - name: resolve-domain
                 mountPath: /etc/hosts
-              
-"deployment.yaml" 74L, 1957C
             restartPolicy: Never
             volumes:
             - name: docker-socket
