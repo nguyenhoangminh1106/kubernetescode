@@ -64,6 +64,7 @@ pipeline {
     stage('Delete unused Docker images') {
       steps {
          sh 'docker image prune -a -f'
+         sh 'cat /etc/hosts'
       }
     }
   }
