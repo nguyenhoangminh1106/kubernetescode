@@ -10,10 +10,10 @@ pipeline {
             containers:
             - name: jenkins-slave
               image: jenkins/inbound-agent:latest
-              // securityContext:
-              //   runAsUser: 0
+              securityContext:
+                runAsUser: 0
               command:
-              - "sudo"
+              - "cat"
               tty: true
               volumeMounts:
               - name: docker-socket
