@@ -22,6 +22,8 @@ spec:
 
     - name: docker
       image: docker:latest
+      ports:
+        - containerPort: 50000
   volumes:
     - name: docker-socket
       hostPath:
