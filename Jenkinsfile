@@ -1,6 +1,7 @@
 pipeline {
   agent {
     kubernetes {
+      label 'jenkins-agent'
       idleMinutes 5  // how long the pod will live after no jobs have run on it
       inheritFrom 'jenkins-agent.yaml'
       
