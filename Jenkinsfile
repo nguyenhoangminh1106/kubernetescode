@@ -22,19 +22,16 @@ pipeline {
     //   }
     // }
 
-    stage('Test image') {
+    stage('Build image') {
       steps {
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
+        docker.build("raj80dockerid/test")
       }
     }
 
     stage('Push image') {
       steps {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            app.push("latest")
-        }
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub').push("latest")
+
       }
     }
 
