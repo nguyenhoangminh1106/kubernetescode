@@ -4,13 +4,10 @@ pipeline {
       yaml '''
           apiVersion: v1
           kind: Pod
-          metadata:
-            labels:
-              jenkins: jenkins-agent
           spec:
             containers:  
-              - name: jnlp
-                image: docker:latest
+              - name: maven
+                image: maven:alpine
                 volumeMounts:
                   - name: docker
                     mountPath: /var/run/docker.sock # We use the k8s host docker engine
