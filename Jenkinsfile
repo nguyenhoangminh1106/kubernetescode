@@ -17,14 +17,6 @@ pipeline {
         }
     }
 
-    // stage('Build image') {
-    //   steps {
-    //     container('docker') {  
-    //       sh "docker build -t 576bb055-bc8d-4b31-a36a-a454eaeb2921/test:latest ."           
-    //     }
-    //   }
-    // }
-
     stage('Build image') {
       steps {
         script{
@@ -36,7 +28,9 @@ pipeline {
     stage('Push image') {
       steps {
         script {
-          docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry').push("latest")
+          docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
+            docker.push("latest")
+          }
         }
       }
     }
