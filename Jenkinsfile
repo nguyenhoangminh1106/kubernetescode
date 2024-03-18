@@ -9,9 +9,9 @@ pipeline {
           spec:
             containers:
             - name: jenkins-slave
-              image: jenkins/inbound-agent:latest
-              securityContext:
-                runAsUser: 0
+              // image: jenkins/inbound-agent:latest
+              // securityContext:
+              //   runAsUser: 0
               command:
               - "sudo"
               tty: true
