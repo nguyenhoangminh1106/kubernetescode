@@ -7,7 +7,7 @@ pipeline {
           spec:
             containers:  
               - name: docker
-                image: docker:alpine
+                image: docker:latest
                 volumeMounts:
                   - name: docker
                     mountPath: /var/run/docker.sock # We use the k8s host docker engine
