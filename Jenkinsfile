@@ -6,8 +6,8 @@ pipeline {
           kind: Pod
           spec:
             containers:  
-              - name: docker
-                image: docker:latest
+              - name: jnlp
+                image: jenkins/inbound-agent:latest
                 volumeMounts:
                   - name: docker
                     mountPath: /var/run/docker.sock # We use the k8s host docker engine
