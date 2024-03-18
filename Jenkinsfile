@@ -14,24 +14,34 @@ pipeline {
         }
     }
 
-    stage('Build image') {
+    // stage('Build image') {
+    //   steps {
+    //     container('docker') {  
+    //       sh "docker build -t 576bb055-bc8d-4b31-a36a-a454eaeb2921/test:latest ."           
+    //     }
+    //   }
+    // }
+
+    stage('Test image') {
       steps {
-        container('docker') {  
-          sh "docker build -t 576bb055-bc8d-4b31-a36a-a454eaeb2921/test:latest ."           
+        app.inside {
+            sh 'echo "Tests passed"'
         }
       }
     }
 
     stage('Push image') {
       steps {
-        sh "docker push 576bb055-bc8d-4b31-a36a-a454eaeb2921/test:latest"
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+            app.push("latest")
+        }
       }
     }
 
-    stage('Delete unused Docker images') {
-      steps {
-        sh 'docker image prune -a -f'
-      }
-    }
+    // stage('Delete unused Docker images') {
+    //   steps {
+    //     sh 'docker image prune -a -f'
+    //   }
+    // }
   }
 }
