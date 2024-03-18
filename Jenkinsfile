@@ -1,6 +1,26 @@
 pipeline {
   agent {
-    label 'jenkins-agent'
+    yaml '''
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: jenkins-slave
+      spec:
+        containers:
+        - name: jenkins-slave
+          image: your_jenkins_slave_image:tag
+          command:
+          - "cat"
+          tty: true
+          volumeMounts:
+          - name: docker-socket
+            mountPath: /var/run/docker.sock
+        restartPolicy: Never
+        volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+    '''
   }
 
   stages {
