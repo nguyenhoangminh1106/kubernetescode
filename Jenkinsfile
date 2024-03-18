@@ -2,7 +2,36 @@ pipeline {
   agent {
     kubernetes {
       yaml '''
-      
+          apiVersion: v1
+          kind: Pod
+          metadata:
+            labels:
+              jenkins: jenkins-agent
+          spec:
+            containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
+            #   - name: jnlp
+            #     image: jenkins/inbound-agent:latest
+            #     volumeMounts:
+            #       - name: docker
+            #         mountPath: /var/run/docker.sock # We use the k8s host docker engine
+            #       - name: docker_pv
+            #         mountPath: /var/run/docker.sock
+            # volumes:
+            #   - name: docker
+            #     hostPath:
+            #       path: /var/run/docker.sock
+            #   - name: docker_pv
+            #     persistentVolumeClaim:
+            #       claimName: jenkins-pv-volume
+          
+              - name: docker
+                image: docker:latest
+                ports:
+                  - containerPort: 50000
+            volumes:
+              - name: docker-socket
+                hostPath:
+                  path: /var/run/docker.sock
         '''
       
     }
