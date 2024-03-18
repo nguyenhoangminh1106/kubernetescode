@@ -1,5 +1,7 @@
 pipeline {
-  agent any
+  agent {
+    label 'jenkins-agent'
+  }
 
   stages {
     stage('Clone repository') {
@@ -17,15 +19,7 @@ pipeline {
         }
     }
 
-    // stage('Build image') {
-    //   steps {
-    //     script{
-    //       docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
-    //     }
-    //   }
-    // }
-
-    stage('Push image') {
+    stage('Build and Push image') {
       steps {
         script {
           docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
