@@ -9,7 +9,7 @@ pipeline {
           spec:
             containers:
             - name: jenkins-slave
-              image: maven:alpine
+              image: jenkins/inbound-agent:latest
               command:
               - "cat"
               tty: true
