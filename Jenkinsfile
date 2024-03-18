@@ -17,19 +17,19 @@ pipeline {
         }
     }
 
-    stage('Build image') {
-      steps {
-        script{
-          docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
-        }
-      }
-    }
+    // stage('Build image') {
+    //   steps {
+    //     script{
+    //       docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
+    //     }
+    //   }
+    // }
 
     stage('Push image') {
       steps {
         script {
           docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
-            docker.push("latest")
+            docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test").push("latest")
           }
         }
       }
