@@ -1,5 +1,8 @@
 apiVersion: v1
 kind: Pod
+metadata:
+  labels:
+    jenkins: jenkins-agent
 spec:
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
     - name: jnlp
