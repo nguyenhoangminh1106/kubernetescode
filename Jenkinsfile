@@ -16,11 +16,23 @@ pipeline {
               volumeMounts:
               - name: docker-socket
                 mountPath: /var/run/docker.sock
+              - name: docker-bin
+                mountPath: /usr/bin/docker
+              - name: resolve-domain
+                mountPath: /etc/hosts
+              
+"deployment.yaml" 74L, 1957C
             restartPolicy: Never
             volumes:
             - name: docker-socket
               hostPath:
                 path: /var/run/docker.sock
+            - name: docker-bin
+              hostPath:
+                path: /usr/bin/docker
+            - name: resolve-domain
+              hostPath:
+                path: /etc/hosts
         '''
     }
   }
