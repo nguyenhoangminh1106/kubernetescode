@@ -9,7 +9,7 @@ pipeline {
           spec:
             containers:
             - name: jenkins-slave
-              image: docker:latest
+              image: maven:alpine
               command:
               - "cat"
               tty: true
