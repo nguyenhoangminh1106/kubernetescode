@@ -15,11 +15,8 @@ pipeline {
 
     stage('Initialize'){
         steps {
-          step {
+          script {
             def dockerHome = tool 'Docker'
-          }
-
-          step {
             env.PATH = "${dockerHome}/bin:${env.PATH}"
           }
         }
@@ -35,14 +32,13 @@ pipeline {
 
     stage('Build image') {
       steps {
-        docker.build("raj80dockerid/test")
+        docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test")
       }
     }
 
     stage('Push image') {
       steps {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub').push("latest")
-
+        docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry').push("latest")
       }
     }
 
