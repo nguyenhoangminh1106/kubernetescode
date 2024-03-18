@@ -8,6 +8,8 @@ pipeline {
             containers:  
               - name: jnlp
                 image: jenkins/inbound-agent:latest
+              - name: docker
+                image: docker:latest
                 volumeMounts:
                   - name: docker
                     mountPath: /var/run/docker.sock # We use the k8s host docker engine
