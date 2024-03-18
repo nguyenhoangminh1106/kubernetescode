@@ -47,6 +47,7 @@ pipeline {
           script {
             def dockerHome = tool 'Docker'
             env.PATH = "${dockerHome}/bin:${env.PATH}"
+            sh 'cat /etc/hosts'
           }
         }
     }
@@ -64,7 +65,6 @@ pipeline {
     stage('Delete unused Docker images') {
       steps {
          sh 'docker image prune -a -f'
-         sh 'cat /etc/hosts'
       }
     }
   }
