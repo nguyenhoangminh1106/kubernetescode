@@ -4,6 +4,9 @@ metadata:
 spec:
   containers:
      - name: jnlp
+       volumeMounts:
+         - name: resolve-domain
+           mountPath: /etc/hosts
   volumes:
      - name: resolve-domain
        hostPath:
