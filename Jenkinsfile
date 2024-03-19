@@ -38,5 +38,10 @@ pipeline {
          sh 'docker image prune -a -f'
       }
     }
+
+    stage('Trigger ManifestUpdate') {
+       echo "triggering updatemanifestjob"
+       build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+    }
   }
 }
