@@ -3,7 +3,7 @@ metadata:
     jenkins: jenkins-agent
 spec:
   containers:
-     - name: jenkins-agent
-       image: jenkinsci/jnlp-slave
-       command:
-         - bin/sh -c
+     - name: jnlp
+       env:
+         - name: CONTAINER_ENV_VAR
+           value: jnlp
