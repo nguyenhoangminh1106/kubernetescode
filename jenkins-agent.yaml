@@ -7,3 +7,5 @@ spec:
   containers:
      - name: jenkins-agent
        image: jenkins/agent:latest
+       command:
+         - bin/sh -c
