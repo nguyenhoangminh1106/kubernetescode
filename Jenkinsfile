@@ -1,5 +1,9 @@
-node {
-    def app
+pipeline {
+    agent {
+        kubernetes {
+          yamlFile 'jenkins-agent.yaml'
+        }
+      }
 
     stage('Clone repository') {
       
