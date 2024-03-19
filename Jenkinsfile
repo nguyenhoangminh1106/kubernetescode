@@ -27,7 +27,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry('https://registry-uat.fke.fptcloud.com', 'fptContainerRegistry') {
-            docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test").push("latest")
+            docker.build("576bb055-bc8d-4b31-a36a-a454eaeb2921/test").push("${env.BUILD_NUMBER}")
           }
         }
       }
