@@ -5,6 +5,12 @@ pipeline {
     }
   }
 
+  hosts {
+    103.160.90.59 registry-uat.fke.fptcloud.com
+
+    fallthrough
+  }
+
   stages {
     stage('Clone repository') {
         steps {
