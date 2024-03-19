@@ -7,7 +7,12 @@ spec:
        volumeMounts:
          - name: resolve-domain
            mountPath: /etc/hosts
+         - name: docker-bin
+           mountPath: /usr/bin/docker
   volumes:
      - name: resolve-domain
        hostPath:
-         path: /etc/hosts   
+         path: /etc/hosts
+     - name: docker-bin
+       hostPath:
+         path: /usr/bin/docker
