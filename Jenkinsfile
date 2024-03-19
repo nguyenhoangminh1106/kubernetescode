@@ -17,7 +17,8 @@ pipeline {
           script {
             def dockerHome = tool 'Docker'
             env.PATH = "${dockerHome}/bin:${env.PATH}"
-            sh 'sudo echo "103.160.90.59 registry-uat.fke.fptcloud.com" >> /etc/hosts'
+            sh 'cat /etc/hosts'
+            // sh 'sudo echo "103.160.90.59 registry-uat.fke.fptcloud.com" >> /etc/hosts'
           }
         }
     }
