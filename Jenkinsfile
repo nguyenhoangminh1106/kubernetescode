@@ -1,39 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      yaml '''
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: jenkins-slave
-          spec:
-            containers:
-            - name: jenkins-slave
-              image: jenkins/inbound-agent:latest
-              securityContext:
-                runAsUser: 0
-              command:
-              - "cat"
-              tty: true
-              volumeMounts:
-              - name: docker-socket
-                mountPath: /var/run/docker.sock
-              - name: docker-bin
-                mountPath: /usr/bin/docker
-              - name: resolve-domain
-                mountPath: /etc/hosts
-            restartPolicy: Never
-            volumes:
-            - name: docker-socket
-              hostPath:
-                path: /var/run/docker.sock
-            - name: docker-bin
-              hostPath:
-                path: /usr/bin/docker
-            - name: resolve-domain
-              hostPath:
-                path: /etc/hosts
-        '''
+      label 'jenkins-agent'
     }
   }
 
