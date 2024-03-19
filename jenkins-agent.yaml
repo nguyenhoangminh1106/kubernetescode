@@ -4,3 +4,7 @@ metadata:
 spec:
   containers:
      - name: jnlp
+  volumes:
+     - name: resolve-domain
+       hostPath:
+         path: /etc/hosts   
